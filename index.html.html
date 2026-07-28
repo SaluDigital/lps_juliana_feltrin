@@ -226,10 +226,15 @@
 
       <div style="display:grid;grid-template-columns:{{ gridTurmasPassadas }};gap:clamp(18px,3vw,28px);align-items:stretch;">
         <div style="position:relative;border-radius:8px;overflow:hidden;background:#0F1E1A;border:1px solid rgba(187,149,99,0.48);box-shadow:0 28px 80px rgba(16,32,28,0.16);height:{{ turmaVideoHeight }};">
-          <video controls="{{ true }}" playsinline="{{ true }}" preload="metadata" style="width:100%;height:100%;object-fit:cover;display:block;background:#0F1E1A;">
+          <video id="turma-video" onClick="{{ handleTurmaVideoToggle }}" onPlay="{{ handleTurmaVideoPlay }}" onPause="{{ handleTurmaVideoPause }}" onEnded="{{ handleTurmaVideoPause }}" playsinline="{{ true }}" preload="metadata" style="width:100%;height:100%;object-fit:cover;display:block;background:#0F1E1A;cursor:pointer;">
             <source src="./assets/video1.mp4" type="video/mp4">
             Seu navegador não conseguiu reproduzir este vídeo.
           </video>
+          <sc-if value="{{ showTurmaVideoPlay }}" hint-placeholder-val="{{ true }}">
+            <button type="button" onClick="{{ handleTurmaVideoPlayClick }}" aria-label="Reproduzir vídeo" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:76px;height:76px;border-radius:50%;border:1px solid rgba(244,241,232,0.42);background:rgba(15,30,26,0.72);color:#F4F1E8;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 18px 46px rgba(0,0,0,0.28);backdrop-filter:blur(8px);" style-hover="background:rgba(187,149,99,0.9);color:#0F1E1A;transform:translate(-50%,-50%) scale(1.04);">
+              <span style="display:block;width:0;height:0;border-top:13px solid transparent;border-bottom:13px solid transparent;border-left:20px solid currentColor;margin-left:5px;"></span>
+            </button>
+          </sc-if>
         </div>
 
         <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(2,minmax(0,1fr));gap:12px;height:{{ turmaVideoHeight }};">
@@ -387,6 +392,7 @@ class Component extends DCLogic {
     formName: '',
     formWhats: '',
     formEmail: '',
+    turmaVideoPlaying: false,
     submitted: false
   };
 
@@ -406,6 +412,29 @@ class Component extends DCLogic {
       arr[i] = !arr[i];
       return { faqOpen: arr };
     });
+  }
+
+  playTurmaVideo() {
+    const video = document.getElementById('turma-video');
+    if (video && video.play) {
+      video.play();
+      this.setState({ turmaVideoPlaying: true });
+    }
+  }
+
+  pauseTurmaVideo() {
+    const video = document.getElementById('turma-video');
+    if (video && video.pause) {
+      video.pause();
+      this.setState({ turmaVideoPlaying: false });
+    }
+  }
+
+  toggleTurmaVideo() {
+    const video = document.getElementById('turma-video');
+    if (!video) return;
+    if (video.paused) this.playTurmaVideo();
+    else this.pauseTurmaVideo();
   }
 
   renderVals() {
@@ -529,12 +558,17 @@ class Component extends DCLogic {
       gridCta: isMobile ? '1fr' : '1fr 1fr',
       submitted: this.state.submitted,
       notSubmitted: !this.state.submitted,
+      showTurmaVideoPlay: !this.state.turmaVideoPlaying,
       formName: this.state.formName,
       formWhats: this.state.formWhats,
       formEmail: this.state.formEmail,
       handleNameChange: (e) => this.setState({ formName: e.target.value }),
       handleWhatsChange: (e) => this.setState({ formWhats: e.target.value }),
       handleEmailChange: (e) => this.setState({ formEmail: e.target.value }),
+      handleTurmaVideoPlayClick: (e) => { e.stopPropagation(); this.playTurmaVideo(); },
+      handleTurmaVideoToggle: () => this.toggleTurmaVideo(),
+      handleTurmaVideoPlay: () => this.setState({ turmaVideoPlaying: true }),
+      handleTurmaVideoPause: () => this.setState({ turmaVideoPlaying: false }),
       handleSubmit: (e) => { e.preventDefault(); this.setState({ submitted: true }); }
     };
   }

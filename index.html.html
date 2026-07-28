@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Familjen+Grotesk:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="./image-slot.js"></script>
+  <style>
+    body{margin:0;background:#F7F4EE;}
+    ::selection{background:#BB9563;color:#0F1E1A;}
+    @keyframes eo-fadeup{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes eo-fade{from{opacity:0}to{opacity:1}}
+    @keyframes eo-pulse{0%,100%{box-shadow:0 0 0 0 rgba(187,149,99,0.45)}70%{box-shadow:0 0 0 14px rgba(187,149,99,0)}}
+    @keyframes eo-drift{0%{transform:translate(0,0) scale(1)}50%{transform:translate(-14px,10px) scale(1.03)}100%{transform:translate(0,0) scale(1)}}
+  </style>
+</helmet>
+
+<div style="font-family:'Manrope',sans-serif;background:#F7F4EE;color:#16241F;overflow-x:hidden;position:relative;">
+
+  <!-- SECTION 1 - HERO -->
+  <section style="position:relative;min-height:100vh;background:#0F1E1A;display:flex;flex-direction:column;justify-content:center;padding:clamp(28px,6vw,90px) clamp(36px,8vw,140px) clamp(28px,6vw,90px) clamp(28px,5vw,72px);box-sizing:border-box;overflow:hidden;">
+    <div style="position:absolute;inset:0;background-image:url('./assets/hero.webp');background-size:cover;background-position:center right;background-repeat:no-repeat;"></div>
+    <div style="position:absolute;top:-120px;right:-120px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(187,149,99,0.16),transparent 70%);animation:eo-drift 14s ease-in-out infinite;pointer-events:none;"></div>
+
+    <div style="position:relative;z-index:2;max-width:760px;animation:eo-fadeup 1s ease both;">
+      <h1 style="font-family:'Familjen Grotesk',sans-serif;font-weight:600;line-height:1.06;color:#F4F1E8;margin:0 0 26px 0;text-wrap:pretty;">Domine o diagnóstico e as abordagens clínicas para o tratamento dos defeitos de desenvolvimento do esmalte</h1>
+      <p style="font-size:clamp(16px,1.7vw,20px);line-height:1.6;color:#C9D2CC;max-width:680px;margin:0 0 40px 0;text-wrap:pretty;">Uma imersão presencial para profissionais da Odontologia que desejam reconhecer diferentes DDEs e tomar decisões mais seguras sobre diagnóstico, infiltração resinosa e técnicas restauradoras.</p>
+
+      <div style="display:flex;flex-wrap:wrap;gap:14px;margin-bottom:44px;">
+        <sc-for list="{{ quickFacts }}" as="fact" hint-placeholder-count="5">
+          <div style="border:1px solid rgba(244,241,232,0.22);border-radius:999px;padding:9px 18px;font-size:13.5px;color:#E9E4D6;font-family:'Space Grotesk',sans-serif;letter-spacing:0.01em;">{{ fact }}</div>
+        </sc-for>
+      </div>
+
+      <a href="#inscricao" style="display:inline-flex;align-items:center;gap:10px;background:#BB9563;color:#0F1E1A;padding:18px 34px;border-radius:4px;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:15.5px;text-decoration:none;letter-spacing:0.01em;animation:eo-pulse 3.5s ease-in-out infinite;" style-hover="background:#CBA877;">Quero garantir minha vaga →</a>
+    </div>
+  </section>
+
+  <!-- SECTION 2 - IDENTIFICAÇÃO COM O PROBLEMA -->
+  <section style="opacity:0;animation:eo-fadeup 0.9s ease 0.00s both;padding:clamp(60px,9vw,120px) clamp(28px,6vw,90px);background:#F7F4EE;display:grid;grid-template-columns:{{ gridProblem }};gap:clamp(30px,5vw,70px);align-items:center;box-sizing:border-box;">
+    <div>
+      <h2 style="font-family:'Familjen Grotesk',sans-serif;font-weight:600;font-size:clamp(26px,3.4vw,40px);line-height:1.08;margin:0 0 30px 0;color:#16241F;text-wrap:pretty;">Defeitos no esmalte exigem mais do que uma avalia&ccedil;&atilde;o est&eacute;tica</h2>
+      <p style="font-size:17px;line-height:1.5;color:#3E4A44;margin:0 0 22px 0;">Altera&ccedil;&otilde;es como <strong style="color:#16241F;font-weight:700;">Hipomineraliza&ccedil;&atilde;o Molar-Incisivo</strong>, fluorose dent&aacute;ria, hipoplasias e amelog&ecirc;nese imperfeita podem parecer semelhantes no primeiro olhar, mas revelam hist&oacute;rias cl&iacute;nicas, riscos e caminhos de tratamento muito diferentes.</p>
+      <p style="font-size:18px;line-height:1.48;color:#16241F;margin:0 0 26px 0;padding-left:22px;border-left:2px solid #BB9563;font-style:italic;">Quando o diagn&oacute;stico &eacute; preciso, a conduta deixa de ser tentativa e passa a ser uma decis&atilde;o cl&iacute;nica mais segura, conservadora e personalizada.</p>
+      <p style="font-size:16.5px;line-height:1.52;color:#3E4A44;margin:0;">Nesta imers&atilde;o, o conhecimento cient&iacute;fico sobre os <strong style="color:#16241F;font-weight:700;">DDEs</strong> se conecta &agrave; rotina do consult&oacute;rio: reconhecer padr&otilde;es, interpretar sinais e escolher a abordagem mais indicada para cada paciente.</p>
+    </div>
+    <img src="./assets/defeitos-avaliacao.webp" alt="Avaliação clínica de defeitos no esmalte" style="width:100%;height:clamp(280px,32vw,440px);object-fit:cover;border-radius:6px;display:block;">
+  </section>
+
+  <!-- SECTION 3 - PARA QUEM -->
+  <section style="opacity:0;animation:eo-fadeup 0.9s ease 0.12s both;padding:clamp(60px,9vw,120px) clamp(28px,6vw,90px);background:linear-gradient(135deg,#06110E 0%,#0F1E1A 42%,#1D352B 100%);box-sizing:border-box;position:relative;overflow:hidden;">
+    <div style="position:absolute;inset:0;background:radial-gradient(circle at 18% 18%,rgba(187,149,99,0.18) 0%,rgba(187,149,99,0.08) 24%,rgba(187,149,99,0) 48%),radial-gradient(circle at 82% 70%,rgba(244,241,232,0.12) 0%,rgba(244,241,232,0.04) 26%,rgba(244,241,232,0) 52%),linear-gradient(120deg,rgba(187,149,99,0.08) 0%,rgba(187,149,99,0) 42%),linear-gradient(180deg,rgba(244,241,232,0.05) 0%,rgba(244,241,232,0) 36%,rgba(0,0,0,0.22) 100%);pointer-events:none;"></div>
+    <div style="position:absolute;top:-180px;left:8%;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(187,149,99,0.09),transparent 68%);pointer-events:none;"></div>
+    <div style="position:absolute;right:-120px;bottom:-180px;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(244,241,232,0.1),transparent 66%);pointer-events:none;"></div>
+    <div style="position:absolute;inset:0;border-top:1px solid rgba(244,241,232,0.08);border-bottom:1px solid rgba(244,241,232,0.08);pointer-events:none;"></div>
+    <div style="position:relative;z-index:1;max-width:760px;margin:0 auto 46px auto;text-align:center;">
+      <h2 style="font-family:'Familjen Grotesk',sans-serif;font-weight:600;font-size:clamp(26px,3.4vw,38px);color:#F4F1E8;line-height:1.08;margin:0;">Esta imersão é para você que...</h2>
+    </div>
+    <div style="position:relative;z-index:1;max-width:900px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:22px 46px;">
+      <sc-for list="{{ paraQuemItems }}" as="item" hint-placeholder-count="8">
+        <div style="display:flex;gap:16px;align-items:flex-start;">
+          <div style="flex:none;width:24px;height:24px;border-radius:50%;border:1px solid rgba(187,149,99,0.88);display:flex;align-items:center;justify-content:center;margin-top:1px;background:rgba(187,149,99,0.08);">
+            <div style="width:6px;height:6px;border-radius:50%;background:#BB9563;"></div>
+          </div>
+          <p style="font-size:15.5px;line-height:1.5;color:#E8E5DA;margin:0;">{{ item }}</p>
+        </div>
+      </sc-for>
+    </div>
+    <div style="position:relative;z-index:1;text-align:center;margin-top:54px;">
+      <a href="#inscricao" style="display:inline-block;background:rgba(244,241,232,0.03);color:#F4F1E8;border:1px solid rgba(187,149,99,0.55);padding:16px 34px;border-radius:4px;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:15px;text-decoration:none;" style-hover="border-color:#BB9563;color:#BB9563;background:rgba(187,149,99,0.1);">Quero participar</a>
+    </div>
+  </section>
+
+  <!-- SECTION 4 - PROGRAMAÇÃO -->
+  <section style="opacity:0;animation:eo-fadeup 0.9s ease 0.24s both;padding:clamp(60px,9vw,120px) clamp(28px,6vw,90px);background:#F7F4EE;box-sizing:border-box;">
+    <div style="max-width:760px;margin:0 auto 20px auto;text-align:center;">
+      <h2 style="font-family:'Familjen Grotesk',sans-serif;font-weight:600;font-size:clamp(26px,3.4vw,40px);line-height:1.08;margin:0 0 22px 0;color:#16241F;">Do diagnóstico à decisão clínica</h2>
+      <p style="font-size:16.5px;line-height:1.7;color:#3E4A44;margin:0;">A programação foi estruturada para proporcionar uma visão completa dos defeitos de desenvolvimento do esmalte, combinando fundamentos científicos, diagnóstico e diferentes possibilidades terapêuticas.</p>
+    </div>
+
+    <div style="max-width:1180px;margin:56px auto 0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;align-items:stretch;">
+      <sc-for list="{{ blocos }}" as="bloco" hint-placeholder-count="3">
+        <div style="height:100%;background:#FFFFFF;border:1px solid rgba(16,32,28,0.08);border-radius:8px;padding:clamp(24px,3vw,34px);display:flex;flex-direction:column;gap:24px;box-sizing:border-box;">
+          <div>
+            <div style="font-family:'Space Grotesk',sans-serif;font-size:13px;letter-spacing:0.1em;color:#8A7048;margin-bottom:10px;">BLOCO {{ bloco.num }}</div>
+            <h3 style="font-family:'Familjen Grotesk',sans-serif;font-weight:600;font-size:19px;line-height:1.15;color:#16241F;margin:0 0 10px 0;">{{ bloco.titulo }}</h3>
+            <sc-if value="{{ bloco.autora }}">
+              <p style="font-size:13.5px;color:#5C6B63;margin:0;font-style:italic;">{{ bloco.autora }}</p>
+            </sc-if>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr;gap:12px;align-content:start;">
+            <sc-for list="{{ bloco.topicos }}" as="topico" hint-placeholder-count="6">
+              <div style="font-size:14.5px;line-height:1.6;color:#3E4A44;padding-left:14px;position:relative;">
+                <span style="position:absolute;left:0;top:9px;width:5px;height:5px;background:#BB9563;border-radius:50%;"></span>
+                {{ topico }}
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- SECTION 5 - FLUXOGRAMA -->
+  <section style="opacity:0;animation:eo-fadeup 0.9s ease 0.36s both;padding:clamp(60px,9vw,120px) clamp(28px,6vw,90px);background:linear-gradient(135deg,#06110E 0%,#0F1E1A 48%,#193027 100%);box-sizing:border-box;position:relative;overflow:hidden;">
+    <div style="position:absolute;inset:0;background:radial-gradient(circle at 15% 22%,rgba(187,149,99,0.18) 0%,rgba(187,149,99,0.08) 25%,rgba(187,149,99,0) 50%),radial-gradient(circle at 85% 70%,rgba(244,241,232,0.1) 0%,rgba(244,241,232,0.04) 28%,rgba(244,241,232,0) 56%),linear-gradient(180deg,rgba(244,241,232,0.05) 0%,rgba(244,241,232,0) 38%,rgba(0,0,0,0.22) 100%);pointer-events:none;"></div>
+    <div style="position:absolute;top:-170px;right:8%;width:420px;height:420px;border-radius:50%;border:1px solid rgba(187,149,99,0.2);pointer-events:none;"></div>
+    <div style="position:absolute;bottom:-220px;left:-120px;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(187,149,99,0.12),transparent 68%);pointer-events:none;"></div>
+    <div style="position:relative;z-index:1;max-width:760px;margin:0 auto 50px auto;text-align:center;">
+      <h2 style="font-family:'Familjen Grotesk',sans-serif;font-weight:600;font-size:clamp(26px,3.4vw,38px);color:#F4F1E8;line-height:1.08;margin:0;">Mais segurança para transformar diagnóstico em conduta clínica</h2>
+      <p style="font-size:16.5px;line-height:1.55;color:#D6DCD8;margin:24px auto 0 auto;max-width:680px;">Após a imersão, o objetivo é que o profissional consiga compreender não apenas <strong style="color:#F4F1E8;font-weight:700;">"o que o paciente tem"</strong>, mas também:</p>
+    </div>
+    <div style="position:relative;z-index:1;max-width:860px;margin:0 auto 60px auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;">
+      <sc-for list="{{ fluxoDetalhado }}" as="step" hint-placeholder-count="6">
+        <div style="background:rgba(244,241,232,0.95);border:1px solid rgba(187,149,99,0.36);border-radius:6px;padding:14px 20px;font-family:'Space Grotesk',sans-serif;font-size:14px;color:#0F1E1A;text-align:center;box-shadow:0 14px 30px rgba(0,0,0,0.12);">{{ step }}</div>
+      </sc-for>
+    </div>
+    <div style="position:relative;z-index:1;max-width:900px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:0;">
+      <sc-for list="{{ fluxoSimples }}" as="step" hint-placeholder-count="4">
+        <div style="display:flex;align-items:center;">
+          <div style="background:#F4F1E8;color:#0F1E1A;border-radius:999px;padding:16px 30px;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:15px;border:1px solid rgba(187,149,99,0.5);">{{ step.label }}</div>
+          <sc-if value="{{ step.showArrow }}" hint-placeholder-val="{{ true }}">
+            <div style="color:#BB9563;font-size:20px;padding:0 16px;">→</div>
+          </sc-if>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- SECTION 6 - PROFESSORAS -->
+  <section style="opacity:0;animation:eo-fadeup 0.9s ease 0.48s both;padding:clamp(60px,9vw,120px) clamp(28px,6vw,90px);background:#F7F4EE;box-sizing:border-box;">
+    <div style="max-width:760px;margin:0 auto 56px auto;text-align:center;">
+      <h2 style="font-family:'Familjen Grotesk',sans-serif;font-weight:600;font-size:clamp(26px,3.4vw,40px);line-height:1.08;margin:0;color:#16241F;">Aprenda com quem pesquisa e aplica os DDEs na prática</h2>
+    </div>
+
+    <div style="max-width:1080px;margin:0 auto;display:flex;flex-direction:column;gap:36px;">
+      <div style="background:#FFFFFF;border:1px solid rgba(16,32,28,0.08);border-radius:8px;overflow:hidden;display:grid;grid-template-columns:{{ gridProfessor }};align-items:stretch;">
+        <div style="position:relative;min-height:360px;overflow:hidden;">
+          <img src="./assets/dra-juliana.webp" alt="Profa. Dra. Juliana Feltrin-Souza" style="width:100%;height:100%;min-height:360px;object-fit:cover;display:block;">
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(15,30,26,0) 48%,rgba(15,30,26,0.38) 100%);border-right:3px solid #BB9563;pointer-events:none;"></div>
+        </div>
+        <div style="padding:clamp(30px,4vw,46px);">
+          <h3 style="font-family:'Familjen Grotesk',sans-serif;font-weight:600;font-size:20px;line-height:1.15;margin:0 0 14px 0;color:#16241F;">Profa. Dra. Juliana Feltrin-Souza</h3>
+          <p style="font-size:15.5px;line-height:1.55;color:#3E4A44;margin:0 0 18px 0;">Professora e pesquisadora da <strong style="color:#16241F;font-weight:700;">Universidade Federal do Paraná (UFPR)</strong>, dedica sua trajetória ao estudo da Hipomineralização Molar-Incisivo (HMI) e dos defeitos de desenvolvimento do esmalte.</p>
+          <p style="font-size:16px;line-height:1.48;color:#16241F;margin:0 0 20px 0;padding-left:20px;border-left:2px solid #BB9563;font-style:italic;">Sua pesquisa conecta epidemiologia, diagnóstico e tomada de decisão clínica para ampliar a segurança no cuidado de crianças e adolescentes.</p>
+          <p style="font-size:14.5px;line-height:1.58;color:#3E4A44;margin:0 0 22px 0;">Pesquisadora Produtividade da Fundação Araucária, figura entre os três pesquisadores com maior produção científica internacional relacionada à HMI. Lidera ensaios clínicos randomizados e contribui para novas abordagens em dentes acometidos por DDEs.</p>
+          <div style="display:flex;gap:24px;margin-bottom:24px;align-items:center;">
+            <div><div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:28px;color:#BB9563;">+130</div><div style="font-size:12px;color:#5C6B63;">artigos científicos</div></div>
+            <div style="height:34px;width:1px;background:rgba(16,32,28,0.12);"></div>
+            <div style="font-size:13px;line-height:1.45;color:#5C6B63;">Autora de livros e referência em Odontopediatria baseada em ciência.</div>
+          </div>
+          <a href="http://lattes.cnpq.br/3220662145410941" target="_blank" rel="noopener" style="font-size:13.5px;color:#16241F;text-decoration:underline;text-underline-offset:3px;">Acessar Currículo Lattes</a>
+        </div>
+      </div>
+
+      <div style="background:#FFFFFF;border:1px solid rgba(16,32,28,0.08);border-radius:8px;overflow:hidden;display:grid;grid-template-columns:{{ gridProfessorReverse }};align-items:stretch;">
+        <div style="padding:clamp(30px,4vw,46px);">
+          <h3 style="font-family:'Familjen Grotesk',sans-serif;font-weight:600;font-size:20px;line-height:1.15;margin:0 0 14px 0;color:#16241F;">Profa. Dra. Yasmine Mendes Puppo</h3>
+          <p style="font-size:15.5px;line-height:1.55;color:#3E4A44;margin:0 0 18px 0;">Professora e pesquisadora com sólida atuação em <strong style="color:#16241F;font-weight:700;">Odontologia Restauradora</strong> e Materiais Odontológicos, com foco em tratamentos minimamente invasivos.</p>
+          <p style="font-size:16px;line-height:1.48;color:#16241F;margin:0 0 20px 0;padding-left:20px;border-left:2px solid #BB9563;font-style:italic;">Sua experiência aproxima ciência laboratorial, materiais bioativos e protocolos clínicos para restaurar estética e função com preservação dental.</p>
+          <p style="font-size:14.5px;line-height:1.58;color:#3E4A44;margin:0 0 22px 0;">Investiga e aplica técnicas como infiltração resinosa e abordagens restauradoras voltadas à reabilitação de dentes com alterações estruturais e defeitos de desenvolvimento do esmalte.</p>
+          <div style="display:flex;gap:24px;margin-bottom:24px;align-items:center;">
+            <div><div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:28px;color:#BB9563;">+90</div><div style="font-size:12px;color:#5C6B63;">artigos científicos</div></div>
+            <div style="height:34px;width:1px;background:rgba(16,32,28,0.12);"></div>
+            <div style="font-size:13px;line-height:1.45;color:#5C6B63;">Autora e organizadora de livros na área.</div>
+          </div>
+          <a href="http://lattes.cnpq.br/8303631399786406" target="_blank" rel="noopener" style="font-size:13.5px;color:#16241F;text-decoration:underline;text-underline-offset:3px;">Acessar Currículo Lattes</a>
+        </div>
+        <div style="position:relative;min-height:360px;overflow:hidden;">
+          <img src="./assets/dra-yasmine.webp" alt="Profa. Dra. Yasmine Mendes Puppo" style="width:100%;height:100%;min-height:360px;object-fit:cover;display:block;">
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(15,30,26,0) 48%,rgba(15,30,26,0.42) 100%);border-left:3px solid #BB9563;pointer-events:none;"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 7 - SOBRE O CURSO -->
+  <section style="opacity:0;animation:eo-fadeup 0.9s ease 0.60s both;padding:clamp(70px,10vw,130px) clamp(28px,6vw,90px);background:#0F1E1A;box-sizing:border-box;text-align:center;">
+    <div style="max-width:780px;margin:0 auto;">
+      <h2 style="font-family:'Familjen Grotesk',sans-serif;font-weight:600;font-size:clamp(26px,3.4vw,38px);color:#F4F1E8;line-height:1.08;margin:0 0 30px 0;">Uma imersão para conectar ciência e prática clínica</h2>
+      <p style="font-size:16.5px;line-height:1.8;color:#C9D2CC;margin:0 0 20px 0;">O curso nasceu da união da experiência de professoras e pesquisadoras da Universidade Federal do Paraná nas áreas de defeitos de desenvolvimento do esmalte, Odontopediatria, Odontologia Restauradora e Materiais Odontológicos.</p>
+      <p style="font-size:16.5px;line-height:1.8;color:#C9D2CC;margin:0;">O objetivo é oferecer aos cirurgiões-dentistas uma visão integrada do diagnóstico e tratamento dessas alterações, permitindo uma atuação mais segura diante de crianças e adolescentes acometidos pelos diferentes tipos de DDE.</p>
+      <div style="display:flex;justify-content:center;gap:56px;margin-top:52px;flex-wrap:wrap;">
+        <div><div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:32px;color:#BB9563;">8h</div><div style="font-size:12.5px;color:#8FA098;">de imersão</div></div>
+        <div><div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:32px;color:#BB9563;">+130</div><div style="font-size:12.5px;color:#8FA098;">artigos — Juliana Feltrin-Souza</div></div>
+        <div><div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:32px;color:#BB9563;">+90</div><div style="font-size:12.5px;color:#8FA098;">artigos — Yasmine Mendes Puppo</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 8 - INFORMAÇÕES DO CURSO -->
+  <section style="opacity:0;animation:eo-fadeup 0.9s ease 0.72s both;padding:clamp(60px,9vw,120px) clamp(28px,6vw,90px);background:#F7F4EE;box-sizing:border-box;">
+    <div style="max-width:760px;margin:0 auto 50px auto;text-align:center;">
+      <h2 style="font-family:'Familjen Grotesk',sans-serif;font-weight:600;font-size:clamp(26px,3.4vw,38px);color:#16241F;line-height:1.08;margin:0;">Informações importantes</h2>
+    </div>
+    <div style="max-width:900px;margin:0 auto;background:#FFFFFF;border:1px solid #BB9563;border-radius:8px;padding:clamp(30px,5vw,52px);">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:28px;margin-bottom:40px;">
+        <sc-for list="{{ infoRows }}" as="row" hint-placeholder-count="6">
+          <div>
+            <div style="font-family:'Space Grotesk',sans-serif;letter-spacing:0.12em;text-transform:uppercase;font-size:11.5px;color:#8A7048;margin-bottom:8px;">{{ row.label }}</div>
+            <div style="font-size:15.5px;color:#16241F;line-height:1.5;">{{ row.value }}</div>
+          </div>
+        </sc-for>
+      </div>
+      <div style="text-align:center;border-top:1px solid rgba(16,32,28,0.1);padding-top:34px;">
+        <a href="#inscricao" style="display:inline-block;background:#0F1E1A;color:#F4F1E8;padding:18px 36px;border-radius:4px;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:15.5px;text-decoration:none;" style-hover="background:#1B332B;">Quero garantir minha vaga</a>
+        <p style="font-size:13px;color:#5C6B63;margin:16px 0 0 0;">Vagas limitadas. Inscrição sujeita à disponibilidade da turma.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 9 - CERTIFICAÇÃO / APOIO -->
+  <section style="opacity:0;animation:eo-fadeup 0.9s ease 0.84s both;padding:clamp(50px,7vw,90px) clamp(28px,6vw,90px);background:#EFEAE0;box-sizing:border-box;">
+    <div style="max-width:900px;margin:0 auto;text-align:center;">
+      <span style="font-family:'Space Grotesk',sans-serif;letter-spacing:0.2em;text-transform:uppercase;font-size:12px;color:#8A7048;">Certificação / Apoio</span>
+      <div style="display:flex;justify-content:center;margin:26px 0;">
+        <image-slot id="dmg-logo" shape="rect" placeholder="Logo DMG (informações a confirmar)" style="width:200px;height:90px;"></image-slot>
+      </div>
+      <p style="font-size:14.5px;line-height:1.7;color:#5C6B63;margin:0;">Carga horária certificada, instituição responsável pela emissão e detalhes do apoio institucional/comercial serão informados em breve.</p>
+    </div>
+  </section>
+
+  <!-- SECTION 10 - FAQ -->
+  <section style="opacity:0;animation:eo-fadeup 0.9s ease 0.96s both;padding:clamp(60px,9vw,120px) clamp(28px,6vw,90px);background:#F7F4EE;box-sizing:border-box;">
+    <div style="max-width:760px;margin:0 auto 46px auto;text-align:center;">
+      <h2 style="font-family:'Familjen Grotesk',sans-serif;font-weight:600;font-size:clamp(26px,3.4vw,38px);color:#16241F;line-height:1.08;margin:0;">Perguntas frequentes</h2>
+    </div>
+    <div style="max-width:800px;margin:0 auto;display:flex;flex-direction:column;gap:12px;">
+      <sc-for list="{{ faqs }}" as="faq" hint-placeholder-count="7">
+        <div style="background:#FFFFFF;border:1px solid rgba(16,32,28,0.08);border-radius:6px;overflow:hidden;">
+          <div onClick="{{ faq.toggle }}" style="padding:20px 26px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;gap:20px;">
+            <span style="font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:15.5px;color:#16241F;">{{ faq.q }}</span>
+            <span style="font-size:20px;color:#BB9563;flex:none;">{{ faq.icon }}</span>
+          </div>
+          <sc-if value="{{ faq.open }}">
+            <p style="padding:0 26px 22px 26px;font-size:14.5px;line-height:1.7;color:#3E4A44;margin:0;">{{ faq.a }}</p>
+          </sc-if>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- SECTION 11 - CTA FINAL + FORMULÁRIO -->
+  <section id="inscricao" style="opacity:0;animation:eo-fadeup 0.9s ease 1.08s both;padding:clamp(60px,9vw,120px) clamp(28px,6vw,90px);background:#0F1E1A;box-sizing:border-box;position:relative;overflow:hidden;">
+    <div style="position:absolute;bottom:-140px;left:-100px;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,rgba(187,149,99,0.14),transparent 70%);animation:eo-drift 16s ease-in-out infinite;pointer-events:none;"></div>
+    <div style="position:relative;max-width:1080px;margin:0 auto;display:grid;grid-template-columns:{{ gridCta }};gap:60px;align-items:start;">
+      <div>
+        <h2 style="font-family:'Familjen Grotesk',sans-serif;font-weight:600;font-size:clamp(26px,3.4vw,38px);color:#F4F1E8;line-height:1.08;margin:0 0 24px 0;">Amplie sua segurança no diagnóstico e tratamento dos DDEs</h2>
+        <p style="font-size:16px;line-height:1.75;color:#C9D2CC;margin:0 0 20px 0;">Aprofunde seus conhecimentos sobre Hipomineralização Molar-Incisivo, fluorose, hipoplasias, amelogênese imperfeita e diferentes possibilidades de tratamento com uma abordagem baseada em ciência e aplicação clínica.</p>
+        <p style="font-size:16px;line-height:1.75;color:#C9D2CC;margin:0 0 30px 0;">8 horas de imersão presencial em Curitiba.</p>
+        <p style="font-size:13.5px;color:#8FA098;margin:0;">Preencha o formulário ao lado para acessar a inscrição.</p>
+      </div>
+
+      <sc-if value="{{ submitted }}">
+        <div style="background:#FFFFFF;border-radius:8px;padding:44px;text-align:center;animation:eo-fade 0.6s ease both;">
+          <div style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:20px;color:#16241F;margin-bottom:12px;">Inscrição recebida</div>
+          <p style="font-size:14.5px;color:#3E4A44;line-height:1.7;margin:0;">Obrigada pelo seu interesse. Em breve entraremos em contato com os próximos passos.</p>
+        </div>
+      </sc-if>
+      <sc-if value="{{ notSubmitted }}" hint-placeholder-val="{{ true }}">
+        <form onSubmit="{{ handleSubmit }}" style="background:#FFFFFF;border-radius:8px;padding:clamp(28px,4vw,44px);display:flex;flex-direction:column;gap:18px;">
+          <div style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:18px;color:#16241F;margin-bottom:6px;">Quero me inscrever</div>
+          <label style="font-size:12.5px;color:#5C6B63;letter-spacing:0.03em;">Nome completo
+            <input type="text" required="" value="{{ formName }}" onChange="{{ handleNameChange }}" style="display:block;width:100%;box-sizing:border-box;margin-top:6px;padding:13px 14px;border:1px solid rgba(16,32,28,0.16);border-radius:4px;font-size:15px;font-family:'Manrope',sans-serif;color:#16241F;"/>
+          </label>
+          <label style="font-size:12.5px;color:#5C6B63;letter-spacing:0.03em;">WhatsApp
+            <input type="tel" required="" value="{{ formWhats }}" onChange="{{ handleWhatsChange }}" placeholder="(41) 99999-9999" style="display:block;width:100%;box-sizing:border-box;margin-top:6px;padding:13px 14px;border:1px solid rgba(16,32,28,0.16);border-radius:4px;font-size:15px;font-family:'Manrope',sans-serif;color:#16241F;"/>
+          </label>
+          <label style="font-size:12.5px;color:#5C6B63;letter-spacing:0.03em;">E-mail
+            <input type="email" required="" value="{{ formEmail }}" onChange="{{ handleEmailChange }}" style="display:block;width:100%;box-sizing:border-box;margin-top:6px;padding:13px 14px;border:1px solid rgba(16,32,28,0.16);border-radius:4px;font-size:15px;font-family:'Manrope',sans-serif;color:#16241F;"/>
+          </label>
+          <button type="submit" style="margin-top:8px;background:#BB9563;color:#0F1E1A;border:none;padding:16px;border-radius:4px;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:15.5px;cursor:pointer;" style-hover="background:#CBA877;">Quero me inscrever</button>
+        </form>
+      </sc-if>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="padding:36px clamp(28px,6vw,90px);background:#0F1E1A;border-top:1px solid rgba(244,241,232,0.1);text-align:center;">
+    <p style="font-size:12.5px;color:#7C8B84;margin:0;font-family:'Space Grotesk',sans-serif;letter-spacing:0.04em;">Dra. Juliana Feltrin — Curso de defeitos de desenvolvimento do esmalte</p>
+  </footer>
+
+  <!-- FLOATING MOBILE CTA -->
+  <sc-if value="{{ isMobile }}">
+    <div style="position:fixed;bottom:0;left:0;right:0;z-index:50;padding:14px 18px;background:#0F1E1A;border-top:1px solid rgba(187,149,99,0.4);box-shadow:0 -8px 24px rgba(0,0,0,0.25);">
+      <a href="#inscricao" style="display:block;text-align:center;background:#BB9563;color:#0F1E1A;padding:15px;border-radius:4px;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:14.5px;letter-spacing:0.02em;text-decoration:none;">GARANTIR MINHA VAGA</a>
+    </div>
+  </sc-if>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+
+class Component extends DCLogic {
+  state = {
+    isMobile: false,
+    faqOpen: [false, false, false, false, false, false, false],
+    formName: '',
+    formWhats: '',
+    formEmail: '',
+    submitted: false
+  };
+
+  componentDidMount() {
+    this.checkMobile = () => this.setState({ isMobile: window.innerWidth <= 760 });
+    this.checkMobile();
+    window.addEventListener('resize', this.checkMobile);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.checkMobile);
+  }
+
+  toggleFaq(i) {
+    this.setState(s => {
+      const arr = s.faqOpen.slice();
+      arr[i] = !arr[i];
+      return { faqOpen: arr };
+    });
+  }
+
+  renderVals() {
+    const quickFacts = ['8 horas de imersão', 'Presencial', 'Auditório CRO-PR', 'Curitiba – PR', 'Datas: 30/10 e 27/11'];
+
+    const paraQuemItems = [
+      'É cirurgião-dentista e deseja aprofundar seus conhecimentos sobre DDEs;',
+      'Atua ou deseja atuar com Odontopediatria;',
+      'Atende crianças e adolescentes com alterações no esmalte;',
+      'Tem dúvidas no diagnóstico diferencial das opacidades;',
+      'Deseja entender melhor a HMI e suas repercussões;',
+      'Quer aprimorar seus protocolos de infiltração resinosa;',
+      'Busca mais segurança na escolha de materiais e técnicas restauradoras;',
+      'Valoriza uma prática clínica fundamentada em evidências científicas.'
+    ];
+
+    const blocos = [
+      {
+        num: 1,
+        titulo: 'Diagnóstico dos defeitos de desenvolvimento do esmalte',
+        autora: 'Profa. Dra. Juliana Feltrin-Souza',
+        topicos: [
+          'Etiologia e idade de risco', 'Critérios de diagnóstico dos DDEs', 'Diagnóstico diferencial',
+          'Fluorose dentária', 'Hipomineralização de Molares e Incisivos – HMI', 'Hipoplasias',
+          'Amelogênese imperfeita', 'Características clínicas', 'Níveis de gravidade',
+          'Impactos e repercussões na saúde bucal', 'Características estruturais dos tecidos afetados'
+        ]
+      },
+      {
+        num: 2,
+        titulo: 'Abordagens clínicas e Infiltração Resinosa – ICON',
+        autora: 'Profa. Dra. Yasmine Mendes Puppo',
+        topicos: [
+          'Indicações e contraindicações', 'Mecanismo de ação da infiltração resinosa',
+          'Uso da transiluminação no diagnóstico das opacidades', 'Possibilidades clínicas do ICON',
+          'Técnicas de infiltração resinosa', 'Abordagens estéticas minimamente invasivas'
+        ]
+      },
+      {
+        num: 3,
+        titulo: 'Tratamento restaurador dos dentes afetados pelos DDEs',
+        autora: '',
+        topicos: [
+          'Sistemas adesivos em dentes hipomineralizados', 'Desafios de adesão',
+          'Escolha dos materiais odontológicos', 'Materiais restauradores',
+          'Técnicas restauradoras diretas', 'Técnicas restauradoras semi-indiretas',
+          'Planejamento restaurador dos dentes afetados'
+        ]
+      }
+    ];
+
+    const fluxoDetalhado = ['Como identificar', 'Como diferenciar', 'Como avaliar a gravidade', 'Quando intervir', 'Qual abordagem utilizar', 'Como acompanhar o caso'];
+
+    const fluxoSimplesLabels = ['Diagnóstico', 'Planejamento', 'Tratamento', 'Acompanhamento'];
+    const fluxoSimples = fluxoSimplesLabels.map((label, i) => ({ label, showArrow: i < fluxoSimplesLabels.length - 1 }));
+
+    const infoRows = [
+      { label: 'Formato', value: 'Presencial' },
+      { label: 'Carga horária', value: '8 horas' },
+      { label: 'Local', value: 'Auditório CRO-PR' },
+      { label: 'Cidade', value: 'Curitiba – PR' },
+      { label: 'Datas', value: '30 de outubro (9h–17h) e 27 de novembro (9h–17h)' },
+      { label: 'Investimento', value: 'R$ 2.500,00' }
+    ];
+
+    const faqData = [
+      { q: 'Para quem é o curso?', a: 'O curso é destinado a cirurgiões-dentistas, odontopediatras e profissionais interessados no diagnóstico e tratamento dos defeitos de desenvolvimento do esmalte.' },
+      { q: 'O curso é presencial?', a: 'Sim. A imersão será realizada presencialmente no Auditório do CRO-PR, em Curitiba.' },
+      { q: 'Qual é a duração?', a: 'A programação possui carga horária total de 8 horas.' },
+      { q: 'Quais alterações serão abordadas?', a: 'Entre os principais temas estão Hipomineralização Molar-Incisivo (HMI), fluorose dentária, hipoplasias, amelogênese imperfeita e outras alterações relacionadas aos DDEs.' },
+      { q: 'O curso aborda ICON?', a: 'Sim. A infiltração resinosa será abordada dentro das possibilidades de tratamento estético minimamente invasivo, incluindo indicações, contraindicações, mecanismo de ação e técnicas.' },
+      { q: 'Haverá conteúdo sobre restaurações?', a: 'Sim. Serão discutidos materiais, sistemas adesivos e técnicas restauradoras aplicáveis aos dentes afetados pelos DDEs.' },
+      { q: 'Qual é o investimento?', a: 'R$ 2.500,00. Formas de pagamento e parcelamento serão informadas posteriormente.' }
+    ];
+    const faqs = faqData.map((f, i) => ({
+      q: f.q, a: f.a,
+      open: this.state.faqOpen[i],
+      icon: this.state.faqOpen[i] ? '–' : '+',
+      toggle: () => this.toggleFaq(i)
+    }));
+
+    const isMobile = this.state.isMobile;
+    return {
+      quickFacts, paraQuemItems, blocos, fluxoDetalhado, fluxoSimples, infoRows, faqs,
+      isMobile,
+      gridProblem: isMobile ? '1fr' : '1.1fr 0.9fr',
+      gridProfessor: isMobile ? '1fr' : '0.9fr 1.1fr',
+      gridProfessorReverse: isMobile ? '1fr' : '1.1fr 0.9fr',
+      gridCta: isMobile ? '1fr' : '1fr 1fr',
+      submitted: this.state.submitted,
+      notSubmitted: !this.state.submitted,
+      formName: this.state.formName,
+      formWhats: this.state.formWhats,
+      formEmail: this.state.formEmail,
+      handleNameChange: (e) => this.setState({ formName: e.target.value }),
+      handleWhatsChange: (e) => this.setState({ formWhats: e.target.value }),
+      handleEmailChange: (e) => this.setState({ formEmail: e.target.value }),
+      handleSubmit: (e) => { e.preventDefault(); this.setState({ submitted: true }); }
+    };
+  }
+}
+
+</script>
+</body>
+</html>

@@ -179,6 +179,7 @@
     ::selection{background:#BB9563;color:#0F1E1A;}
     @keyframes eo-fadeup{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
     @keyframes eo-fade{from{opacity:0}to{opacity:1}}
+    @keyframes eo-gallery-shift{from{opacity:0;transform:translateX(34px) scale(0.985)}to{opacity:1;transform:translateX(0) scale(1)}}
     @keyframes eo-pulse{0%,100%{box-shadow:0 0 0 0 rgba(187,149,99,0.45)}70%{box-shadow:0 0 0 14px rgba(187,149,99,0)}}
     @keyframes eo-drift{0%{transform:translate(0,0) scale(1)}50%{transform:translate(-14px,10px) scale(1.03)}100%{transform:translate(0,0) scale(1)}}
   </style>
@@ -215,7 +216,7 @@
       <p style="font-size:18px;line-height:1.48;color:#16241F;margin:0 0 26px 0;padding-left:22px;border-left:2px solid #BB9563;font-style:italic;">Quando o diagn&oacute;stico &eacute; preciso, a conduta deixa de ser tentativa e passa a ser uma decis&atilde;o cl&iacute;nica mais segura, conservadora e personalizada.</p>
       <p style="font-size:16.5px;line-height:1.52;color:#3E4A44;margin:0;">Nesta imers&atilde;o, o conhecimento cient&iacute;fico sobre os <strong style="color:#16241F;font-weight:700;">DDEs</strong> se conecta &agrave; rotina do consult&oacute;rio: reconhecer padr&otilde;es, interpretar sinais e escolher a abordagem mais indicada para cada paciente.</p>
     </div>
-    <img src="./assets/defeitos-avaliacao.webp" alt="Avaliação clínica de defeitos no esmalte" style="width:100%;height:clamp(280px,32vw,440px);object-fit:cover;border-radius:6px;display:block;">
+    <img src="./assets/defeitos.webp" alt="Avaliação clínica de defeitos no esmalte" style="width:100%;height:clamp(280px,32vw,440px);object-fit:cover;border-radius:6px;display:block;">
   </section>
 
   <!-- SECTION 3 - PARA QUEM -->
@@ -393,11 +394,45 @@
           </div>
         </div>
 
-        <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(2,minmax(0,1fr));gap:12px;height:{{ turmaVideoHeight }};">
-          <img src="./assets/img1.jpeg" alt="Registro de turma anterior do curso" style="width:100%;height:100%;object-fit:cover;border-radius:8px 8px 3px 8px;border:1px solid rgba(187,149,99,0.34);box-shadow:0 18px 42px rgba(16,32,28,0.12);display:block;box-sizing:border-box;">
-          <img src="./assets/img2.jpeg" alt="Registro de turma anterior do curso" style="width:100%;height:100%;object-fit:cover;border-radius:8px 8px 8px 3px;border:1px solid rgba(187,149,99,0.34);box-shadow:0 18px 42px rgba(16,32,28,0.12);display:block;box-sizing:border-box;">
-          <img src="./assets/img3.jpeg" alt="Registro de turma anterior do curso" style="width:100%;height:100%;object-fit:cover;border-radius:8px 3px 8px 8px;border:1px solid rgba(187,149,99,0.34);box-shadow:0 18px 42px rgba(16,32,28,0.12);display:block;box-sizing:border-box;">
-          <img src="./assets/img4.jpeg" alt="Registro de turma anterior do curso" style="width:100%;height:100%;object-fit:cover;border-radius:3px 8px 8px 8px;border:1px solid rgba(187,149,99,0.34);box-shadow:0 18px 42px rgba(16,32,28,0.12);display:block;box-sizing:border-box;">
+        <div style="position:relative;height:{{ turmaVideoHeight }};border-radius:8px;overflow:hidden;background:#0F1E1A;border:1px solid rgba(187,149,99,0.42);box-shadow:0 28px 80px rgba(16,32,28,0.16);">
+          <img src="{{ turmaPhoto.src }}" alt="{{ turmaPhoto.alt }}" style="width:100%;height:100%;object-fit:cover;display:block;">
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,17,14,0) 58%,rgba(6,17,14,0.64) 100%);pointer-events:none;"></div>
+          <button type="button" onClick="{{ handleTurmaPhotoPrev }}" aria-label="Foto anterior" style="position:absolute;left:16px;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;border:1px solid rgba(244,241,232,0.48);background:rgba(15,30,26,0.62);color:#F8F5EC;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 12px 30px rgba(0,0,0,0.22);backdrop-filter:blur(8px);font-size:28px;line-height:1;" style-hover="background:rgba(187,149,99,0.92);color:#0F1E1A;">&#8249;</button>
+          <button type="button" onClick="{{ handleTurmaPhotoNext }}" aria-label="Proxima foto" style="position:absolute;right:16px;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;border:1px solid rgba(244,241,232,0.48);background:rgba(15,30,26,0.62);color:#F8F5EC;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 12px 30px rgba(0,0,0,0.22);backdrop-filter:blur(8px);font-size:28px;line-height:1;" style-hover="background:rgba(187,149,99,0.92);color:#0F1E1A;">&#8250;</button>
+          <div style="position:absolute;left:50%;bottom:18px;transform:translateX(-50%);display:flex;align-items:center;justify-content:center;gap:8px;padding:9px 12px;border-radius:999px;background:rgba(15,30,26,0.62);border:1px solid rgba(244,241,232,0.22);backdrop-filter:blur(8px);">
+            <sc-for list="{{ turmaPhotos }}" as="photo" hint-placeholder-count="10">
+              <button type="button" onClick="{{ photo.goTo }}" aria-label="Ver foto da turma" style="width:{{ photo.dotWidth }};height:8px;border-radius:999px;border:0;background:{{ photo.dotColor }};padding:0;cursor:pointer;transition:width 0.2s ease,background 0.2s ease;"></button>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 7C - TURMAS PASSADAS DUPLICADA -->
+  <section style="opacity:0;animation:eo-fadeup 0.9s ease 0.69s both;padding:clamp(70px,9vw,126px) clamp(28px,6vw,90px);background:linear-gradient(135deg,#0F1E1A 0%,#182D26 52%,#243D34 100%);box-sizing:border-box;position:relative;overflow:hidden;">
+    <div style="position:absolute;top:-220px;right:-120px;width:540px;height:540px;border-radius:50%;background:radial-gradient(circle,rgba(187,149,99,0.18),rgba(187,149,99,0.05) 42%,transparent 70%);pointer-events:none;"></div>
+    <div style="position:absolute;left:-180px;bottom:-260px;width:560px;height:560px;border-radius:50%;background:radial-gradient(circle,rgba(244,241,232,0.11),rgba(244,241,232,0.035) 44%,transparent 72%);pointer-events:none;"></div>
+    <div style="position:absolute;inset:0;border-top:1px solid rgba(244,241,232,0.08);border-bottom:1px solid rgba(244,241,232,0.08);pointer-events:none;"></div>
+    <div style="position:relative;z-index:1;max-width:1180px;margin:0 auto;">
+      <div style="max-width:940px;margin:0 auto 44px auto;text-align:center;">
+        <div style="width:72px;height:1px;background:#BB9563;margin:0 auto 22px auto;"></div>
+        <h2 style="font-family:'Familjen Grotesk',sans-serif;font-weight:600;font-size:clamp(30px,3.8vw,46px);color:#F4F1E8;line-height:1.04;margin:0 0 18px 0;text-wrap:pretty;">Ciência, prática clínica e troca entre profissionais</h2>
+      </div>
+
+      <div style="position:relative;height:{{ bGalleryHeight }};border-radius:8px;overflow:hidden;background:#0F1E1A;border:1px solid rgba(187,149,99,0.42);box-shadow:0 28px 80px rgba(0,0,0,0.26);">
+        <div style="display:grid;grid-template-columns:{{ bGalleryColumns }};gap:12px;height:100%;padding:12px;box-sizing:border-box;">
+          <sc-for list="{{ bVisiblePhotos }}" as="photo" hint-placeholder-count="3">
+            <img src="{{ photo.src }}" alt="{{ photo.alt }}" style="width:100%;height:100%;object-fit:{{ bGalleryObjectFit }};object-position:center center;border-radius:6px;display:block;min-width:0;animation:eo-gallery-shift 0.95s cubic-bezier(0.22,1,0.36,1) both;">
+          </sc-for>
+        </div>
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,17,14,0) 68%,rgba(6,17,14,0.48) 100%);pointer-events:none;"></div>
+        <button type="button" onClick="{{ handleBPhotoPrev }}" aria-label="Foto anterior" style="position:absolute;left:16px;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;border:1px solid rgba(244,241,232,0.48);background:rgba(15,30,26,0.62);color:#F8F5EC;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 12px 30px rgba(0,0,0,0.22);backdrop-filter:blur(8px);font-size:28px;line-height:1;" style-hover="background:rgba(187,149,99,0.92);color:#0F1E1A;">&#8249;</button>
+        <button type="button" onClick="{{ handleBPhotoNext }}" aria-label="Próxima foto" style="position:absolute;right:16px;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;border:1px solid rgba(244,241,232,0.48);background:rgba(15,30,26,0.62);color:#F8F5EC;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 12px 30px rgba(0,0,0,0.22);backdrop-filter:blur(8px);font-size:28px;line-height:1;" style-hover="background:rgba(187,149,99,0.92);color:#0F1E1A;">&#8250;</button>
+        <div style="position:absolute;left:50%;bottom:18px;transform:translateX(-50%);display:flex;align-items:center;justify-content:center;gap:8px;padding:9px 12px;border-radius:999px;background:rgba(15,30,26,0.62);border:1px solid rgba(244,241,232,0.22);backdrop-filter:blur(8px);">
+          <sc-for list="{{ bPhotos }}" as="photo" hint-placeholder-count="9">
+            <button type="button" onClick="{{ photo.goTo }}" aria-label="Ver grupo de fotos" style="width:{{ photo.dotWidth }};height:8px;border-radius:999px;border:0;background:{{ photo.dotColor }};padding:0;cursor:pointer;transition:width 0.2s ease,background 0.2s ease;"></button>
+          </sc-for>
         </div>
       </div>
     </div>
@@ -566,6 +601,8 @@ class Component extends DCLogic {
     formCroUf: '',
     formSpecialty: '',
     formTurma: '',
+    turmaPhotoIndex: 0,
+    bPhotoIndex: 0,
     turmaVideoPlaying: false,
     submitted: false
   };
@@ -574,10 +611,14 @@ class Component extends DCLogic {
     this.checkMobile = () => this.setState({ isMobile: window.innerWidth <= 760 });
     this.checkMobile();
     window.addEventListener('resize', this.checkMobile);
+    this.turmaPhotoTimer = setInterval(() => this.showTurmaPhoto(this.state.turmaPhotoIndex + 1), 4200);
+    this.bPhotoTimer = setInterval(() => this.showBPhoto(this.state.bPhotoIndex + 1), 4200);
   }
 
   componentWillUnmount() {
     window.removeEventListener('resize', this.checkMobile);
+    if (this.turmaPhotoTimer) clearInterval(this.turmaPhotoTimer);
+    if (this.bPhotoTimer) clearInterval(this.bPhotoTimer);
   }
 
   toggleFaq(i) {
@@ -609,6 +650,16 @@ class Component extends DCLogic {
     if (!video) return;
     if (video.paused) this.playTurmaVideo();
     else this.pauseTurmaVideo();
+  }
+
+  showTurmaPhoto(i) {
+    const total = 10;
+    this.setState({ turmaPhotoIndex: (i + total) % total });
+  }
+
+  showBPhoto(i) {
+    const total = 9;
+    this.setState({ bPhotoIndex: (i + total) % total });
   }
 
   renderVals() {
@@ -663,6 +714,23 @@ class Component extends DCLogic {
     const fluxoDetalhado = ['Como identificar', 'Como diferenciar', 'Como avaliar a gravidade', 'Quando intervir', 'Qual abordagem utilizar', 'Como acompanhar o caso'];
 
     const isMobile = this.state.isMobile;
+    const turmaPhotos = Array.from({ length: 10 }, (_, i) => ({
+      src: `./assets/e${i + 1}.webp`,
+      alt: `Registro da imersao em turma anterior ${i + 1}`,
+      dotWidth: i === this.state.turmaPhotoIndex ? '24px' : '8px',
+      dotColor: i === this.state.turmaPhotoIndex ? '#BB9563' : 'rgba(244,241,232,0.56)',
+      goTo: () => this.showTurmaPhoto(i)
+    }));
+    const turmaPhoto = turmaPhotos[this.state.turmaPhotoIndex] || turmaPhotos[0];
+    const bPhotos = Array.from({ length: 9 }, (_, i) => ({
+      src: `./assets/b${i + 1}.webp`,
+      alt: `Registro clinico da imersao ${i + 1}`,
+      dotWidth: i === this.state.bPhotoIndex ? '24px' : '8px',
+      dotColor: i === this.state.bPhotoIndex ? '#BB9563' : 'rgba(244,241,232,0.56)',
+      goTo: () => this.showBPhoto(i)
+    }));
+    const bVisibleCount = isMobile ? 1 : 3;
+    const bVisiblePhotos = Array.from({ length: bVisibleCount }, (_, i) => bPhotos[(this.state.bPhotoIndex + i) % bPhotos.length]);
 
     const fluxoSimplesLabels = ['Diagnóstico', 'Planejamento', 'Tratamento', 'Acompanhamento'];
     const fluxoSimples = fluxoSimplesLabels.map((label, i) => ({ label, showArrow: i < fluxoSimplesLabels.length - 1, arrow: isMobile ? '↓' : '→' }));
@@ -693,7 +761,7 @@ class Component extends DCLogic {
     }));
 
     return {
-      quickFacts, paraQuemItems, blocos, fluxoDetalhado, fluxoSimples, infoRows, faqs,
+      quickFacts, paraQuemItems, blocos, fluxoDetalhado, fluxoSimples, infoRows, faqs, turmaPhotos, turmaPhoto, bPhotos, bVisiblePhotos,
       isMobile,
       heroPadding: isMobile ? 'clamp(44px,10vw,76px) 24px' : 'clamp(28px,6vw,90px) clamp(36px,8vw,140px) clamp(28px,6vw,90px) clamp(28px,5vw,72px)',
       heroOverlay: isMobile ? 'linear-gradient(180deg,rgba(6,17,14,0.78) 0%,rgba(15,30,26,0.62) 42%,rgba(6,17,14,0.84) 100%),radial-gradient(circle at 50% 36%,rgba(0,0,0,0.12),rgba(0,0,0,0.46) 72%)' : 'linear-gradient(90deg,rgba(6,17,14,0.82) 0%,rgba(15,30,26,0.58) 44%,rgba(15,30,26,0.12) 100%)',
@@ -715,6 +783,9 @@ class Component extends DCLogic {
       gridSobreCurso: isMobile ? '1fr' : '0.82fr 1.18fr',
       gridTurmasPassadas: isMobile ? '1fr' : '0.88fr 1.12fr',
       turmaVideoHeight: isMobile ? '340px' : '520px',
+      bGalleryHeight: isMobile ? 'clamp(440px,118vw,560px)' : '520px',
+      bGalleryColumns: isMobile ? '1fr' : 'repeat(3,minmax(0,1fr))',
+      bGalleryObjectFit: isMobile ? 'contain' : 'cover',
       gridInfoRows: isMobile ? '1fr' : 'repeat(3,1fr)',
       infoCtaDirection: isMobile ? 'column' : 'row',
       infoCtaAlign: isMobile ? 'stretch' : 'center',
@@ -751,6 +822,10 @@ class Component extends DCLogic {
       handleTurmaVideoToggle: () => this.toggleTurmaVideo(),
       handleTurmaVideoPlay: () => this.setState({ turmaVideoPlaying: true }),
       handleTurmaVideoPause: () => this.setState({ turmaVideoPlaying: false }),
+      handleTurmaPhotoPrev: () => this.showTurmaPhoto(this.state.turmaPhotoIndex - 1),
+      handleTurmaPhotoNext: () => this.showTurmaPhoto(this.state.turmaPhotoIndex + 1),
+      handleBPhotoPrev: () => this.showBPhoto(this.state.bPhotoIndex - 1),
+      handleBPhotoNext: () => this.showBPhoto(this.state.bPhotoIndex + 1),
       handleSubmit: (e) => { e.preventDefault(); this.setState({ submitted: true }); }
     };
   }

@@ -302,7 +302,7 @@
   <!-- SECTION 6 - PROFESSORAS -->
   <section style="opacity:0;animation:eo-fadeup 0.9s ease 0.48s both;padding:clamp(60px,9vw,120px) clamp(28px,6vw,90px);background:#F7F4EE;box-sizing:border-box;">
     <div style="max-width:760px;margin:0 auto 56px auto;text-align:center;">
-      <h2 style="font-family:'Familjen Grotesk',sans-serif;font-weight:600;font-size:clamp(26px,3.4vw,40px);line-height:1.08;margin:0;color:#16241F;">Aprenda com quem pesquisa e aplica os DDEs na prática</h2>
+      <h2 style="font-family:'Familjen Grotesk',sans-serif;font-weight:600;font-size:clamp(26px,3.4vw,40px);line-height:1.08;margin:0;color:#16241F;">Aprenda com quem pesquisa e atua na prática clínica com os diferentes DDEs.</h2>
     </div>
 
     <div style="max-width:1080px;margin:0 auto;display:flex;flex-direction:column;gap:36px;">
@@ -434,6 +434,85 @@
             <button type="button" onClick="{{ photo.goTo }}" aria-label="Ver grupo de fotos" style="width:{{ photo.dotWidth }};height:8px;border-radius:999px;border:0;background:{{ photo.dotColor }};padding:0;cursor:pointer;transition:width 0.2s ease,background 0.2s ease;"></button>
           </sc-for>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 7D - DEPOIMENTOS -->
+  <section style="opacity:0;animation:eo-fadeup 0.9s ease 0.72s both;padding:clamp(70px,9vw,126px) clamp(28px,6vw,90px);background:linear-gradient(180deg,#F7F4EE 0%,#EFE9DD 100%);box-sizing:border-box;position:relative;overflow:hidden;">
+    <div style="position:absolute;top:-220px;left:-140px;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(187,149,99,0.16),rgba(187,149,99,0.05) 42%,transparent 70%);pointer-events:none;"></div>
+    <div style="position:absolute;right:-160px;bottom:-260px;width:560px;height:560px;border-radius:50%;background:radial-gradient(circle,rgba(15,30,26,0.12),rgba(15,30,26,0.035) 44%,transparent 72%);pointer-events:none;"></div>
+    <div style="position:relative;z-index:1;max-width:1180px;margin:0 auto;">
+      <div style="max-width:780px;margin:0 auto 50px auto;text-align:center;">
+        <div style="width:72px;height:1px;background:#BB9563;margin:0 auto 22px auto;"></div>
+        <h2 style="font-family:'Familjen Grotesk',sans-serif;font-weight:600;font-size:clamp(30px,3.8vw,46px);color:#16241F;line-height:1.04;margin:0 0 18px 0;text-wrap:pretty;">O que profissionais que participaram da imers&atilde;o dizem</h2>
+        <p style="font-size:16.5px;line-height:1.7;color:#4D5A53;margin:0 auto;max-width:680px;text-wrap:pretty;">Relatos de quem viveu um dia de aprofundamento cl&iacute;nico e discuss&atilde;o de casos com colegas da Odontologia.</p>
+      </div>
+
+      <div style="display:grid;grid-template-columns:{{ gridTestimonials }};gap:clamp(18px,3vw,28px);align-items:start;">
+        <article style="order:{{ testimonialText1Order }};background:#FFFFFF;border:1px solid rgba(16,32,28,0.08);border-radius:8px;padding:clamp(24px,3vw,34px);box-shadow:0 22px 70px rgba(16,32,28,0.08);position:relative;overflow:hidden;min-height:{{ testimonialCardHeight }};display:flex;align-items:center;">
+          <div style="position:absolute;right:22px;top:14px;font-family:'Familjen Grotesk',sans-serif;font-size:82px;line-height:1;color:rgba(187,149,99,0.16);">"</div>
+          <div style="position:relative;">
+            <p style="font-size:16.5px;line-height:1.72;color:#2F3D37;margin:0 0 24px 0;text-wrap:pretty;">Oi, professora! Gostaria de agradecer pelo curso, que superou minhas expectativas. O conte&uacute;do foi muito did&aacute;tico e me trouxe muito mais seguran&ccedil;a para diagnosticar os diferentes defeitos de desenvolvimento do esmalte e escolher a melhor abordagem de tratamento para cada caso. Foi um aprendizado que certamente vou levar para a minha pr&aacute;tica cl&iacute;nica e tamb&eacute;m para a minha atua&ccedil;&atilde;o na pesquisa. Recomendo muito o curso para todos os colegas que querem aprofundar seus conhecimentos nessa &aacute;rea! 🥰</p>
+            <div style="display:flex;align-items:center;gap:14px;">
+              <div style="width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#0F1E1A,#BB9563);display:flex;align-items:center;justify-content:center;color:#F8F5EC;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:14px;">A</div>
+              <div>
+                <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:14.5px;color:#16241F;">Amanda Miranda</div>
+                <div style="font-size:13.5px;color:#68766F;margin-top:2px;">Participante da imers&atilde;o</div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <div style="order:{{ testimonialVideo1Order }};position:relative;height:{{ testimonialVideoHeight }};border-radius:8px;overflow:hidden;background:#0F1E1A;border:1px solid rgba(187,149,99,0.42);box-shadow:0 28px 80px rgba(16,32,28,0.16);">
+          <video id="dep-video-1" controls playsinline preload="metadata" onPlay="{{ handleDepVideo1Play }}" onPause="{{ handleDepVideo1Pause }}" onEnded="{{ handleDepVideo1Pause }}" style="width:100%;height:100%;object-fit:cover;object-position:center 38%;display:block;background:#0F1E1A;">
+            <source src="./assets/dep1.mp4" type="video/mp4">
+            Seu navegador n&atilde;o conseguiu reproduzir este v&iacute;deo.
+          </video>
+          <sc-if value="{{ showDepVideo1Play }}" hint-placeholder-val="{{ true }}">
+            <button type="button" onClick="{{ handleDepVideo1PlayClick }}" aria-label="Reproduzir depoimento em v&iacute;deo" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:72px;height:72px;border-radius:50%;border:1px solid rgba(244,241,232,0.5);background:rgba(15,30,26,0.72);color:#F4F1E8;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 18px 46px rgba(0,0,0,0.28);backdrop-filter:blur(8px);" style-hover="background:rgba(187,149,99,0.92);color:#0F1E1A;transform:translate(-50%,-50%) scale(1.04);">
+              <span style="display:block;width:0;height:0;border-top:12px solid transparent;border-bottom:12px solid transparent;border-left:19px solid currentColor;margin-left:5px;"></span>
+            </button>
+          </sc-if>
+          <sc-if value="{{ showDepVideo1Pause }}">
+            <button type="button" onClick="{{ handleDepVideo1PauseClick }}" aria-label="Pausar depoimento em v&iacute;deo" style="position:absolute;right:14px;top:14px;width:44px;height:44px;border-radius:50%;border:1px solid rgba(244,241,232,0.5);background:rgba(15,30,26,0.68);color:#F4F1E8;display:flex;align-items:center;justify-content:center;gap:4px;cursor:pointer;box-shadow:0 12px 30px rgba(0,0,0,0.22);backdrop-filter:blur(8px);" style-hover="background:rgba(187,149,99,0.92);color:#0F1E1A;">
+              <span style="width:5px;height:17px;background:currentColor;border-radius:2px;display:block;"></span>
+              <span style="width:5px;height:17px;background:currentColor;border-radius:2px;display:block;"></span>
+            </button>
+          </sc-if>
+        </div>
+
+        <div style="order:{{ testimonialVideo2Order }};position:relative;height:{{ testimonialVideoHeight }};border-radius:8px;overflow:hidden;background:#0F1E1A;border:1px solid rgba(187,149,99,0.42);box-shadow:0 28px 80px rgba(16,32,28,0.16);">
+          <video id="dep-video-2" controls playsinline preload="metadata" onPlay="{{ handleDepVideo2Play }}" onPause="{{ handleDepVideo2Pause }}" onEnded="{{ handleDepVideo2Pause }}" style="width:100%;height:100%;object-fit:cover;object-position:center 38%;display:block;background:#0F1E1A;">
+            <source src="./assets/dep2.mp4" type="video/mp4">
+            Seu navegador n&atilde;o conseguiu reproduzir este v&iacute;deo.
+          </video>
+          <sc-if value="{{ showDepVideo2Play }}" hint-placeholder-val="{{ true }}">
+            <button type="button" onClick="{{ handleDepVideo2PlayClick }}" aria-label="Reproduzir depoimento em v&iacute;deo" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:72px;height:72px;border-radius:50%;border:1px solid rgba(244,241,232,0.5);background:rgba(15,30,26,0.72);color:#F4F1E8;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 18px 46px rgba(0,0,0,0.28);backdrop-filter:blur(8px);" style-hover="background:rgba(187,149,99,0.92);color:#0F1E1A;transform:translate(-50%,-50%) scale(1.04);">
+              <span style="display:block;width:0;height:0;border-top:12px solid transparent;border-bottom:12px solid transparent;border-left:19px solid currentColor;margin-left:5px;"></span>
+            </button>
+          </sc-if>
+          <sc-if value="{{ showDepVideo2Pause }}">
+            <button type="button" onClick="{{ handleDepVideo2PauseClick }}" aria-label="Pausar depoimento em v&iacute;deo" style="position:absolute;right:14px;top:14px;width:44px;height:44px;border-radius:50%;border:1px solid rgba(244,241,232,0.5);background:rgba(15,30,26,0.68);color:#F4F1E8;display:flex;align-items:center;justify-content:center;gap:4px;cursor:pointer;box-shadow:0 12px 30px rgba(0,0,0,0.22);backdrop-filter:blur(8px);" style-hover="background:rgba(187,149,99,0.92);color:#0F1E1A;">
+              <span style="width:5px;height:17px;background:currentColor;border-radius:2px;display:block;"></span>
+              <span style="width:5px;height:17px;background:currentColor;border-radius:2px;display:block;"></span>
+            </button>
+          </sc-if>
+        </div>
+
+        <article style="order:{{ testimonialText2Order }};background:#FFFFFF;border:1px solid rgba(16,32,28,0.08);border-radius:8px;padding:clamp(24px,3vw,34px);box-shadow:0 22px 70px rgba(16,32,28,0.08);position:relative;overflow:hidden;min-height:{{ testimonialCardHeight }};display:flex;align-items:center;">
+          <div style="position:absolute;right:22px;top:14px;font-family:'Familjen Grotesk',sans-serif;font-size:82px;line-height:1;color:rgba(187,149,99,0.16);">"</div>
+          <div style="position:relative;">
+            <p style="font-size:16.5px;line-height:1.72;color:#2F3D37;margin:0 0 24px 0;text-wrap:pretty;">Realizei o curso de infiltrante resinoso com a professora Juliana Feltrin e Yasmine Pupo. Foi muito proveitoso, com embasamento te&oacute;rico e casos cl&iacute;nicos. Ainda, recebemos o material. Valeu a pena!</p>
+            <div style="display:flex;align-items:center;gap:14px;">
+              <div style="width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#BB9563,#243D34);display:flex;align-items:center;justify-content:center;color:#F8F5EC;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:14px;">V</div>
+              <div>
+                <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:14.5px;color:#16241F;">Vit&oacute;ria Tessari</div>
+                <div style="font-size:13.5px;color:#68766F;margin-top:2px;">Participante da imers&atilde;o</div>
+              </div>
+            </div>
+          </div>
+        </article>
       </div>
     </div>
   </section>
@@ -604,6 +683,8 @@ class Component extends DCLogic {
     turmaPhotoIndex: 0,
     bPhotoIndex: 0,
     turmaVideoPlaying: false,
+    depVideo1Playing: false,
+    depVideo2Playing: false,
     submitted: false
   };
 
@@ -652,8 +733,24 @@ class Component extends DCLogic {
     else this.pauseTurmaVideo();
   }
 
+  playDepVideo(videoNumber) {
+    const video = document.getElementById(`dep-video-${videoNumber}`);
+    if (video && video.play) {
+      video.play();
+      this.setState(videoNumber === 1 ? { depVideo1Playing: true } : { depVideo2Playing: true });
+    }
+  }
+
+  pauseDepVideo(videoNumber) {
+    const video = document.getElementById(`dep-video-${videoNumber}`);
+    if (video && video.pause) {
+      video.pause();
+      this.setState(videoNumber === 1 ? { depVideo1Playing: false } : { depVideo2Playing: false });
+    }
+  }
+
   showTurmaPhoto(i) {
-    const total = 10;
+    const total = 9;
     this.setState({ turmaPhotoIndex: (i + total) % total });
   }
 
@@ -714,9 +811,10 @@ class Component extends DCLogic {
     const fluxoDetalhado = ['Como identificar', 'Como diferenciar', 'Como avaliar a gravidade', 'Quando intervir', 'Qual abordagem utilizar', 'Como acompanhar o caso'];
 
     const isMobile = this.state.isMobile;
-    const turmaPhotos = Array.from({ length: 10 }, (_, i) => ({
-      src: `./assets/e${i + 1}.webp`,
-      alt: `Registro da imersao em turma anterior ${i + 1}`,
+    const turmaPhotoFiles = [1, 2, 3, 4, 6, 7, 8, 9, 10];
+    const turmaPhotos = turmaPhotoFiles.map((photoNumber, i) => ({
+      src: `./assets/e${photoNumber}.webp`,
+      alt: `Registro da imersao em turma anterior ${photoNumber}`,
       dotWidth: i === this.state.turmaPhotoIndex ? '24px' : '8px',
       dotColor: i === this.state.turmaPhotoIndex ? '#BB9563' : 'rgba(244,241,232,0.56)',
       goTo: () => this.showTurmaPhoto(i)
@@ -786,6 +884,13 @@ class Component extends DCLogic {
       bGalleryHeight: isMobile ? 'clamp(440px,118vw,560px)' : '520px',
       bGalleryColumns: isMobile ? '1fr' : 'repeat(3,minmax(0,1fr))',
       bGalleryObjectFit: isMobile ? 'contain' : 'cover',
+      gridTestimonials: isMobile ? '1fr' : 'repeat(2,minmax(0,1fr))',
+      testimonialCardHeight: isMobile ? 'auto' : '320px',
+      testimonialVideoHeight: isMobile ? '390px' : '390px',
+      testimonialText1Order: isMobile ? 2 : 1,
+      testimonialVideo1Order: isMobile ? 1 : 2,
+      testimonialVideo2Order: isMobile ? 3 : 3,
+      testimonialText2Order: isMobile ? 4 : 4,
       gridInfoRows: isMobile ? '1fr' : 'repeat(3,1fr)',
       infoCtaDirection: isMobile ? 'column' : 'row',
       infoCtaAlign: isMobile ? 'stretch' : 'center',
@@ -805,6 +910,10 @@ class Component extends DCLogic {
       submitted: this.state.submitted,
       notSubmitted: !this.state.submitted,
       showTurmaVideoPlay: !this.state.turmaVideoPlaying,
+      showDepVideo1Play: !this.state.depVideo1Playing,
+      showDepVideo2Play: !this.state.depVideo2Playing,
+      showDepVideo1Pause: this.state.depVideo1Playing,
+      showDepVideo2Pause: this.state.depVideo2Playing,
       turmaVideoControls: this.state.turmaVideoPlaying,
       formName: this.state.formName,
       formWhats: this.state.formWhats,
@@ -822,6 +931,14 @@ class Component extends DCLogic {
       handleTurmaVideoToggle: () => this.toggleTurmaVideo(),
       handleTurmaVideoPlay: () => this.setState({ turmaVideoPlaying: true }),
       handleTurmaVideoPause: () => this.setState({ turmaVideoPlaying: false }),
+      handleDepVideo1PlayClick: (e) => { e.stopPropagation(); this.playDepVideo(1); },
+      handleDepVideo2PlayClick: (e) => { e.stopPropagation(); this.playDepVideo(2); },
+      handleDepVideo1PauseClick: (e) => { e.stopPropagation(); this.pauseDepVideo(1); },
+      handleDepVideo2PauseClick: (e) => { e.stopPropagation(); this.pauseDepVideo(2); },
+      handleDepVideo1Play: () => this.setState({ depVideo1Playing: true }),
+      handleDepVideo1Pause: () => this.setState({ depVideo1Playing: false }),
+      handleDepVideo2Play: () => this.setState({ depVideo2Playing: true }),
+      handleDepVideo2Pause: () => this.setState({ depVideo2Playing: false }),
       handleTurmaPhotoPrev: () => this.showTurmaPhoto(this.state.turmaPhotoIndex - 1),
       handleTurmaPhotoNext: () => this.showTurmaPhoto(this.state.turmaPhotoIndex + 1),
       handleBPhotoPrev: () => this.showBPhoto(this.state.bPhotoIndex - 1),

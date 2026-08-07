@@ -194,8 +194,16 @@
     <div style="position:absolute;top:-120px;right:-120px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(187,149,99,0.16),transparent 70%);animation:eo-drift 14s ease-in-out infinite;pointer-events:none;"></div>
 
     <div style="position:relative;z-index:2;max-width:{{ heroContentMaxWidth }};animation:eo-fadeup 1s ease both;text-align:{{ heroTextAlign }};margin:{{ heroContentMargin }};">
+      <img src="./assets/logo_branco.webp" alt="Curso de HMI" style="display:{{ heroMobileLogoDisplay }};width:{{ heroMobileLogoWidth }};height:auto;margin:0 auto 18px auto;filter:drop-shadow(0 8px 22px rgba(0,0,0,0.26));">
       <p style="font-family:'Familjen Grotesk',sans-serif;font-weight:600;font-size:{{ heroKickerSize }};line-height:1.2;color:#D9C39A;margin:0 0 14px 0;text-transform:uppercase;letter-spacing:0.08em;text-shadow:0 2px 12px rgba(0,0,0,0.34);">Conectando a evidência científica à prática clínica</p>
-      <h1 style="font-family:'Familjen Grotesk',sans-serif;font-weight:600;font-size:{{ heroTitleSize }};line-height:{{ heroTitleLineHeight }};color:#F8F5EC;margin:0 0 26px 0;text-wrap:pretty;text-shadow:0 3px 18px rgba(0,0,0,0.36);">Hipomineralização Molar-Incisivo: domínio diagnóstico e abordagens clínicas para o tratamento</h1>
+      <div style="display:flex;flex-direction:{{ heroTitleDirection }};align-items:{{ heroTitleAlignItems }};gap:{{ heroLogoGap }};justify-content:{{ heroTitleJustify }};margin:0 0 26px 0;">
+        <img src="./assets/logo_branco.webp" alt="Curso de HMI" style="order:{{ heroLogoOrder }};width:{{ heroLogoWidth }};height:auto;display:{{ heroTitleLogoDisplay }};flex:none;margin-top:{{ heroLogoTopMargin }};filter:drop-shadow(0 8px 22px rgba(0,0,0,0.26));">
+        <h1 style="order:{{ heroTitleOrder }};font-family:'Familjen Grotesk',sans-serif;font-weight:600;font-size:{{ heroTitleSize }};line-height:{{ heroTitleLineHeight }};color:#F8F5EC;margin:0;text-shadow:0 3px 18px rgba(0,0,0,0.36);flex:1;min-width:0;">
+          <span style="display:block;white-space:{{ heroTitleLineWhiteSpace }};">Hipomineralização Molar-Incisivo:</span>
+          <span style="display:block;white-space:{{ heroTitleLineWhiteSpace }};">domínio diagnóstico e abordagens</span>
+          <span style="display:block;white-space:{{ heroTitleLineWhiteSpace }};">clínicas para o tratamento</span>
+        </h1>
+      </div>
       <p style="font-size:{{ heroLeadSize }};line-height:1.6;color:#F0EFE8;max-width:680px;margin:{{ heroLeadMargin }};text-wrap:pretty;text-shadow:0 2px 14px rgba(0,0,0,0.42);">Uma imersão presencial para profissionais da Odontologia que desejam reconhecer diferentes Defeitos de Desenvolvimento do Esmalte, como Hipomineralização Molar-Incisivo, fluorose dentária, hipoplasia e amelogênese imperfeita, e tomar decisões mais seguras sobre diagnóstico, infiltração resinosa e técnicas restauradoras.</p>
 
       <div style="display:flex;flex-wrap:wrap;gap:14px;margin:{{ heroFactsMargin }};justify-content:{{ heroFactsJustify }};">
@@ -863,12 +871,24 @@ class Component extends DCLogic {
       isMobile,
       heroPadding: isMobile ? 'clamp(44px,10vw,76px) 24px' : 'clamp(28px,6vw,90px) clamp(36px,8vw,140px) clamp(28px,6vw,90px) clamp(28px,5vw,72px)',
       heroOverlay: isMobile ? 'linear-gradient(180deg,rgba(6,17,14,0.78) 0%,rgba(15,30,26,0.62) 42%,rgba(6,17,14,0.84) 100%),radial-gradient(circle at 50% 36%,rgba(0,0,0,0.12),rgba(0,0,0,0.46) 72%)' : 'linear-gradient(90deg,rgba(6,17,14,0.82) 0%,rgba(15,30,26,0.58) 44%,rgba(15,30,26,0.12) 100%)',
-      heroContentMaxWidth: isMobile ? '420px' : '760px',
+      heroContentMaxWidth: isMobile ? '420px' : '1080px',
       heroTextAlign: isMobile ? 'center' : 'left',
       heroContentMargin: isMobile ? '0 auto' : '0',
       heroKickerSize: isMobile ? 'clamp(12px,3.2vw,14px)' : 'clamp(13px,1.15vw,15px)',
       heroTitleSize: isMobile ? 'clamp(26px,7.6vw,36px)' : 'clamp(26px,3.4vw,40px)',
       heroTitleLineHeight: isMobile ? '1.03' : '1.06',
+      heroTitleDirection: isMobile ? 'column' : 'row',
+      heroTitleAlignItems: isMobile ? 'center' : 'flex-start',
+      heroTitleOrder: isMobile ? 1 : 2,
+      heroLogoOrder: isMobile ? 2 : 1,
+      heroMobileLogoDisplay: isMobile ? 'block' : 'none',
+      heroTitleLogoDisplay: isMobile ? 'none' : 'block',
+      heroMobileLogoWidth: '96px',
+      heroTitleLineWhiteSpace: isMobile ? 'normal' : 'nowrap',
+      heroTitleJustify: isMobile ? 'center' : 'flex-start',
+      heroLogoWidth: isMobile ? '72px' : '112px',
+      heroLogoGap: isMobile ? '14px' : '24px',
+      heroLogoTopMargin: isMobile ? '2px' : '0',
       heroLeadSize: isMobile ? 'clamp(15px,4vw,17px)' : 'clamp(16px,1.7vw,20px)',
       heroLeadMargin: isMobile ? '0 auto 34px auto' : '0 0 40px 0',
       heroFactsMargin: isMobile ? '0 0 38px 0' : '0 0 44px 0',

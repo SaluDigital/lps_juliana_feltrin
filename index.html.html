@@ -817,8 +817,15 @@ class Component extends DCLogic {
     if (this.state.submitting) return;
 
     const form = e.target;
+    const name = this.state.formName.trim();
     const email = this.state.formEmail.trim();
+    const croUf = this.state.formCroUf.trim();
     const whatsDigits = this.state.formWhats.replace(/\D/g, '');
+
+    if (!name) {
+      this.setState({ formError: 'Informe seu nome completo para continuar.' });
+      return;
+    }
 
     if (!this.isValidEmail(email)) {
       this.setState({ formError: 'Informe um e-mail válido para continuar.' });
@@ -827,6 +834,16 @@ class Component extends DCLogic {
 
     if (whatsDigits.length < 10 || whatsDigits.length > 11) {
       this.setState({ formError: 'Informe um WhatsApp válido com DDD.' });
+      return;
+    }
+
+    if (!croUf) {
+      this.setState({ formError: 'Informe seu CRO/UF para continuar.' });
+      return;
+    }
+
+    if (!this.state.formTurma) {
+      this.setState({ formError: 'Escolha uma data para continuar.' });
       return;
     }
 
@@ -839,10 +856,10 @@ class Component extends DCLogic {
     formData.append('_captcha', 'false');
     formData.append('_template', 'box');
     formData.append('_replyto', email);
-    formData.append('Nome completo', this.state.formName);
+    formData.append('Nome completo', name);
     formData.append('WhatsApp', this.state.formWhats);
     formData.append('E-mail', email);
-    formData.append('CRO/UF', this.state.formCroUf);
+    formData.append('CRO/UF', croUf);
     formData.append('Especialidade', this.state.formSpecialty || 'Não informado');
     formData.append('Turma escolhida', this.state.formTurma);
     formData.append('Mensagem', this.buildEmailBody());

@@ -669,7 +669,7 @@
       <div role="dialog" aria-modal="true" aria-label="Inscrição recebida" style="width:min(100%,390px);background:#FBFAF7;border:1px solid rgba(187,149,99,0.34);border-radius:8px;padding:30px 26px;text-align:center;box-shadow:0 28px 80px rgba(0,0,0,0.32);">
         <div style="width:50px;height:50px;border-radius:50%;background:rgba(187,149,99,0.14);color:#BB9563;display:flex;align-items:center;justify-content:center;margin:0 auto 16px auto;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:22px;">✓</div>
         <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:22px;color:#16241F;margin-bottom:12px;">Inscrição recebida!</div>
-        <p style="font-size:14.5px;line-height:1.65;color:#3E4A44;margin:0 0 12px 0;">Seus dados foram enviados com sucesso. Em alguns segundos, você será redirecionado automaticamente para a página de pagamento para concluir sua inscrição.</p>
+        <p style="font-size:16px;line-height:1.72;color:#24312C;font-weight:500;margin:0 0 12px 0;">Em alguns segundos, você será redirecionado automaticamente para a página de pagamento para concluir sua inscrição.</p>
         <p style="font-family:'Space Grotesk',sans-serif;font-size:12.5px;letter-spacing:0.03em;text-transform:uppercase;color:#8A7048;margin:0 0 18px 0;">Não feche esta página.</p>
         <div style="width:28px;height:28px;border-radius:50%;border:3px solid rgba(187,149,99,0.24);border-top-color:#BB9563;margin:0 auto;animation:eo-spin 0.85s linear infinite;"></div>
       </div>
@@ -859,7 +859,7 @@ class Component extends DCLogic {
       this.setState({ submitted: true, submitting: false });
       this.paymentRedirectTimer = setTimeout(() => {
         window.location.href = 'https://pag.ae/824-xGpHG';
-      }, 7000);
+      }, 10000);
     } catch (error) {
       this.setState({
         submitting: false,

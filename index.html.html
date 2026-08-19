@@ -852,10 +852,11 @@ class Component extends DCLogic {
     this.setState({ submitting: true, formError: '' });
 
     const formData = new FormData();
-    formData.append('_subject', 'Nova Inscrição');
+    formData.append('_subject', '🟢 Nova Inscrição.');
     formData.append('_captcha', 'false');
     formData.append('_template', 'box');
     formData.append('_replyto', email);
+    formData.append('name', 'Imersão HMI');
     formData.append('Nome completo', name);
     formData.append('WhatsApp', this.state.formWhats);
     formData.append('E-mail', email);
